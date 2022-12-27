@@ -1,25 +1,45 @@
-import logo from './logo.svg';
+import { useEffect, useRef } from 'react';
+import useFocus from './useFocus';
 import './App.css';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+	const inputRef = useRef()
+
+	const isFocused = useFocus(inputRef)
+
+	// useEffect(() => {
+	// 	console.log("Logging from App.js: ", inputRef.current)
+	// }, [inputRef])
+
+	// useEffect(() => {
+	// 	console.log("isFocused: ", isFocused)
+	// }, [isFocused])
+
+	return (
+		<div className="App" style={{
+			display: "flex",
+			justifyContent: "center",
+			alignItems: "center"
+		}}>
+			<div style={{
+				backgroundColor: isFocused ? "green" : "red", 
+				margin: 100,
+				borderRadius: 15,
+				padding: 20
+			}}
+				>
+				<input
+					ref={inputRef}
+					type="text"
+					style={{
+						width: "100%",
+						marginTop: "auto",
+						marginBottom: "auto",
+					}}
+					onFocus={() => {}} />
+			</div>
+		</div>
+	);
 }
 
 export default App;
